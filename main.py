@@ -1,5 +1,5 @@
 import random
-
+import requests
 import eel
 
 eel.init('web')                     # Give folder containing web files
@@ -13,6 +13,8 @@ def say_hello_py(x):
     print('Hello from %s' % x)
 
 say_hello_py('Python World!')
-eel.say_hello_js('Python World!')   # Call a Javascript function
+r = requests.get('http://0.0.0.0:8000/country')
+te = r.json()
+eel.say_hello_js(te)   # Call a Javascript function
 
 eel.start('templates/hello.html', port=3211, size=(700, 700), jinja_templates='templates')    # Start
