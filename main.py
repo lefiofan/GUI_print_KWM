@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import random
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import eel
 
+eel.init('web')                     # Give folder containing web files
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@eel.expose
+def py_random():
+    return random.random()
 
+@eel.expose                         # Expose this function to Javascript
+def say_hello_py(x):
+    print('Hello from %s' % x)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+say_hello_py('Python World!')
+eel.say_hello_js('Python World!')   # Call a Javascript function
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+eel.start('templates/hello.html', port=3211, size=(700, 700), jinja_templates='templates')    # Start
