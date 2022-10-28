@@ -1,23 +1,147 @@
 {% extends 'base.html' %}
 
-{% block title %}Hello, World!{% endblock %}
+{% block title %}Забивалка{% endblock %}
 
 
 
 {% block head_scripts %}
-    eel.expose(say_hello_js);               // Expose this function to Python
-        function say_hello_js(x) {
-        console.log(x[0]["name"]);
-        console.log(x[1]["name"]);
-    }
+  
 
 
-    eel.say_hello_py("Javascript World!");  // Call a Python function
+    
 {% endblock %}
 
 
 {% block content %}
-    Hello, World!
-    <br />
+    
+
+      
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-sm-12 one_screen">
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="../img/error.svg" class="rounded me-2 error-img" alt="error">
+      <strong class="me-auto">Ошибка связи</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+    </div>
+    <div class="toast-body">
+      Нет подключение к серверу
+    </div>
+  </div>
+</div>
+                <div class="center-block d-flex align-items-center justify-content-center kkk" style="height: 490px; margin-top: 150px;">
+
+                    <button type="button" class="btn" value="Казахстан" onClick="strana_tar(this)" style="margin-right: 50px"> <img src="../img/kz.svg" class="strana_btn_img" width="550" alt=""></button>
+
+                    <button type="button" class="btn" value="Россия" onClick="strana_tar(this)" style="margin-top: 10px">
+                        <p class="tara_text"> <img src="../img/ru.svg" class="strana_btn_img" width="550" alt=""></p>
+                    </button>
+
+                </div>
+                <div class="col-sm-12">
+                    <img src="../img/logo.png" class="mt-4 tara_logo float-end fixed-bottom" alt="ТОО Альмира2030">
+                </div>
+            </div>
+
+        </div>
+        
+        
+        
+        
+        
+        <div class="two_screen">
+            <div class="row">
+
+                <div class="col-sm-5">
+                    <img src="../img/logo.png" class="mt-4 tara_logo tara_logo_two float-start" alt="ТОО Альмира2030">
+                    <img src="../img/tara.png" id="img_name" class="rounded mx-auto d-block tara_img-img">
+
+                </div>
+                <div class="col-sm-7 ">
+
+                    <div class="row" style="margin-top: 145px;">
+                        <div class="col-sm-6">
+                            <div class="card ">
+                                <div class="card-body card-tara" >
+                                    <h5 class="card-title tara">Обьем тары</h5>
+                                    <div id="tara_elems"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card card-prod-name">
+                                <div class="card-body">
+                                    <h5 class="card-title tara">Наименование продукции</h5>
+
+                                    <div class="list-group" id="list-group2">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                                               <div class="col-sm-12">
+                           <div class="card   down_code">
+                  <div class="loader hide"></div>
+                                                  <div class="card-body print_codes_tara">
+                        <h4 class="card-title name">Потребительские коды</h4>
+                                                      
+                        <div class="input-group ">
+                            
+                            
+ 
+
+         <div class="col-md-5" style="margin-right: 10px;">
+    <input  type="text" class="form-control" value="" placeholder="Загрузить коды бутылок" id="down_code_input" disabled>
+                            </div>
+
+                            
+  
+    <button class="btn_update_file btn btn-secondary" type="button" id="down_code_tara">Обновить</button>
+    <button class="btn btn-warning  " type="button" id="print_code_tara" style="margin-right: 12px;">Печатать</button>
+    <button class="test_print btn btn-info  " type="button" id="test_print">Пробная Печатать</button>
+
+                         
+                            
+                            
+  
+</div>
+                     
+                     
+</div>
+
+</div>
+
+                        <div class="col-sm-12">
+
+
+
+                            <!--                        disabled="disabled"-->
+                            <button type="button" id="btn_print_codes" class="btn btn-primary next_three_screen col-5  float-end" onclick="next_screen()">Далее</button>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+        </div>
+   
+   
     <a href="page2.html">Page 2</a>
 {% endblock %}

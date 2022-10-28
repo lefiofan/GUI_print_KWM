@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
     <head>
         <title>{% block title %}{% endblock %}</title>
+            <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--        <script type="text/javascript" src="/eel.js"></script>-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/flag-icons.min.css">
+    <link rel="stylesheet" href="../css/style.css">
         <!-- Include eel.js - note this file doesn't exist in the 'web' directory -->
-        <script type="text/javascript" src="/eel.js"></script>
+        
         <script type="text/javascript">
             {% block head_scripts %}{% endblock %}
         </script>
@@ -11,4 +18,13 @@
     <body>
         {% block content %}{% endblock %}
     </body>
+    
+    <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-barcode.js"></script>
+    
+    
+    <script type="text/javascript" src="../js/js.js"></script>
+    
 </html>

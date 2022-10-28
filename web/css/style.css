@@ -1,0 +1,102 @@
+.error-img {
+    width: 24px;
+    height: 24px;
+}
+
+#bcTarget {
+    margin-bottom: 10px;
+}
+
+
+
+body {
+    background-color: floralwhite;
+}
+
+.strana_btn_img {
+    border: 1px solid gray;
+    border-radius: 50px;
+}
+
+.tara_logo_two {
+    height: 152px;
+}
+
+.card-tara {
+    margin-bottom: 20px;
+}
+.card-tara {
+    height: 482px;
+}
+.card-prod-name {
+    height: 750px;
+}
+
+.name_prod {
+    height: 73px;
+}
+
+.tara_btn {
+    width: 144px;
+    height: 110px;
+    margin: 10px;
+    font-size: 30px;
+}
+
+.list_0_5,
+.list_0_1,
+.list_0_1_5,
+.list_5,
+.two_screen,
+.three_screen {
+    display: none;
+}
+
+.btn-codes {
+    margin-top: 20px;
+    width: 150px;
+    height: 110px;
+}
+
+.btn-print-codes {
+    margin-top: 20px;
+    width: 150px;
+    height: 110px;
+}
+
+.next_three_screen {
+    margin-top: 20px;
+    width: 200px;
+    height: 110px;
+    padding: 10px;
+}
+
+
+.down_code_title{
+    margin-right: 17px;
+}
+
+.down_korob_title {
+    margin-right: 14px;
+    margin-bottom: 0px;
+}
+
+.plus {
+    margin-right: 20px;
+}
+.down_code {
+    margin-top: 20px;
+}
+
+
+.btn_update_file {
+    width: 100px;    
+    height: 100px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.test_print {
+    width: 100px;    
+    height: 100px;
+}
