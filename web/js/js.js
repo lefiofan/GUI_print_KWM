@@ -1,4 +1,5 @@
-var strana;
+let strana;
+let volume;
 
 window.onload = function() {
    //eel.one_start()();
@@ -14,13 +15,9 @@ async function strana_tar(st) {
     
     // Проверка на соединение с Админкой если нет вывод ошибки
     if (tara_elems != 'error') {
-        
-        
         document.getElementsByClassName('one_screen').hidden = true;
         $(".one_screen").hide();
-
         for (const elem of tara_elems) {
-
             create_tara_in_dom(elem);
         }
         $(".two_screen").show();
@@ -31,7 +28,6 @@ async function strana_tar(st) {
 
         toast.show()
     }
-
 
 }
 
@@ -82,13 +78,15 @@ function create_taraName_in_dom(elem) {
 
 
 // Функция принимает страну и отправляет в python принимает список тар
-async function tara(obj, strana) {
-    console.log(strana)
-    name_taraa = await eel.tara_name(obj.value, strana)();
+async function tara(obj) {
+    volume = obj.value;
+    name_taraa = await eel.product_list(volume, strana)();
+    
     $("#list-group2").empty();
     var eell = $("#list-group2").children().length
     for (const name of name_taraa) {
-        create_taraName_in_dom(name['title']);
+        console.log(name);
+        create_taraName_in_dom(name['name']);
     }
 }
 
@@ -96,12 +94,12 @@ async function tara(obj, strana) {
 // Во время нажатий на кнопку принимает название продукции и отправляет в python функцию ответ принимает страну гтин картинку обьем тары и количество в ящике
 async function tara_name(name) {
     
-    name_tara = name.value;
-    name_tara_elems = await eel.tara_name_elem(name_tara)();
+    name_product = name.value;
+    codes_list = await eel.codes_list(name_product, volume, strana)();
 
 
-    for (const name of name_tara_elems) {
-
+    for (const name of codes_list) {
+        console.log(name);
         gtin = name['gtin'];
         strana = name['country'];
         src = name['img'];
