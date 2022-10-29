@@ -1,7 +1,7 @@
-
+var strana;
 
 window.onload = function() {
-   eel.one_start()();
+   //eel.one_start()();
    //document.oncontextmenu = cmenu; function cmenu() { return false;}
 };
 
@@ -53,20 +53,6 @@ function create_Country_in_dom(elem) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function create_tara_in_dom(elem) {
     let btn = document.createElement('button');
     btn.className = "btn btn-info tara_btn";
@@ -97,7 +83,7 @@ function create_taraName_in_dom(elem) {
 
 // Функция принимает страну и отправляет в python принимает список тар
 async function tara(obj, strana) {
-
+    console.log(strana)
     name_taraa = await eel.tara_name(obj.value, strana)();
     $("#list-group2").empty();
     var eell = $("#list-group2").children().length
