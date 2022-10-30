@@ -60,11 +60,8 @@ def product_list(obiem: str, country: str):
 def codes_list(product_name: str, product_volume: str, country: str):
     try:
 
-        codes = requests.get(f'http://127.0.0.1:8081/code/codes/{product_volume}?name_product={product_name}&?country={country}').json()
+        codes = requests.get(f'http://127.0.0.1:8081/code/codes/{product_volume}?name_product={product_name}&country={country}').json()
 
-        # response = requests.request("GET", config["API"]["url"], headers={'cache-control': "no-cache"}, params={f"country": {strana}, f"tara": {obiem}}).json()
-        print(codes)
-        print(type(codes))
         return codes
     except:
         print('error')

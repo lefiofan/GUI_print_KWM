@@ -1,5 +1,6 @@
 let strana;
 let volume;
+let name_product;
 
 window.onload = function() {
    //eel.one_start()();
@@ -79,37 +80,56 @@ function create_taraName_in_dom(elem) {
 
 // Функция принимает страну и отправляет в python принимает список тар
 async function tara(obj) {
+    
     volume = obj.value;
+    
     name_taraa = await eel.product_list(volume, strana)();
     
     $("#list-group2").empty();
     var eell = $("#list-group2").children().length
     for (const name of name_taraa) {
-        console.log(name);
         create_taraName_in_dom(name['name']);
     }
 }
+
+
+
+
+
+
 
 
 // Во время нажатий на кнопку принимает название продукции и отправляет в python функцию ответ принимает страну гтин картинку обьем тары и количество в ящике
 async function tara_name(name) {
     
     name_product = name.value;
+
     codes_list = await eel.codes_list(name_product, volume, strana)();
-
-
-    for (const name of codes_list) {
+    src_product = codes_list[1];
+    src_product = "http://127.0.0.1:8081/products/files/" + src_product;
+    for (const name of codes_list[0]) {
         console.log(name);
-        gtin = name['gtin'];
-        strana = name['country'];
-        src = name['img'];
-        name_tara = name['title'];
-        tara_obm = name['tara'];
-        korob = name['korob'];
 
     }
-    $("#img_name").attr("src", src);
+    $("#img_name").attr("src", src_product);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function next_screen() {
