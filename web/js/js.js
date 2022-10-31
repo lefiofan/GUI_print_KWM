@@ -1,9 +1,11 @@
 let strana;
 let volume;
 let name_product;
+var codes_list = [];
+
 
 window.onload = function() {
-   //eel.one_start()();
+   eel.one_start()();
    //document.oncontextmenu = cmenu; function cmenu() { return false;}
 };
 
@@ -12,7 +14,7 @@ window.onload = function() {
 async function strana_tar(st) {
     strana =  st.value
     tara_elems = await eel.tara_elem(strana)();
-
+    console.log(strana)
     
     // Проверка на соединение с Админкой если нет вывод ошибки
     if (tara_elems != 'error') {
@@ -80,9 +82,9 @@ function create_taraName_in_dom(elem) {
 
 // Функция принимает страну и отправляет в python принимает список тар
 async function tara(obj) {
-    
+    $(".div_taras").hide();
     volume = obj.value;
-    
+    $("#img_name").attr("src", '');
     name_taraa = await eel.product_list(volume, strana)();
     
     $("#list-group2").empty();
@@ -112,154 +114,54 @@ async function tara_name(name) {
 
     }
     $("#img_name").attr("src", src_product);
+    
+    
+    document.getElementById('print_codes_list').innerHTML = codes_list.length
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 function next_screen() {
-    document.getElementsByClassName('two_screen').hidden = true;
-    $(".two_screen").hide();
-    $(".three_screen").show();
-    console.log(name_tara);
-    console.log(strana);
-    $("#img_tara").attr("src", src);
-
-    document.getElementById('tara').innerHTML = tara_obm + ' литров';
-    document.getElementById('strana').innerHTML = strana;
-    document.getElementById('strix_code').innerHTML = gtin;
-    document.getElementById('tara_info-name').innerHTML = name_tara;
-}
-
-
-function start() {
-
-    eel.print_for_gui(1, gtin, korob, strana, name_tara, tara_obm);
-}
-
-
-function stop() {
-     $("#tara_elems").empty();
-    $("#list-group2").empty();
-    $("#codes_list").empty();
-    gtin = "0";
-    korob = "0";
-    strana = "0";
-    src = "../img/tara.png";
-    $("#img_name").attr("src", src);
-    name_tara = "0";
-    tara_obm = "0";
     $(".one_screen").show();
     $(".two_screen").hide();
-    $(".three_screen").hide();
+    $("#img_name").attr("src", "");
     
-   
-    eel.print_for_gui(0, gtin, korob, strana, name_tara, tara_obm);
-
-}
-
-
-
-function create_listCodes(elem) {
-
-    $("#bcTarget2").barcode(elem, "datamatrix",{barWidth:2, barHeight:30});
-}
-
-
-// принимает ответ от python и выводит 
-eel.expose(update_dom);
-
-function update_dom(col, codes) {
+     strana = 0;
+     volume = 0;
+     name_product = 0;
+     codes_list = [];
     
-
-    //document.getElementById('iz_py').innerHTML = col;
-    $("#bcTarget").barcode(col, "code128",{barWidth:2, barHeight:30});
+        
+      var taras_list = document.querySelector('#tara_elems')
+      var products_list = document.querySelector('#list-group2')
+      
+      
+      
+      var delete_taras_listt = taras_list.querySelectorAll('button');
+  for (let i = 0; i < delete_taras_listt.length; i++) {
+    delete_taras_listt[i].remove();
+  }
+       
     
-    $("#codes_list").empty();
+    var delete_products_list = products_list.querySelectorAll('button');
+  for (let i = 0; i < delete_products_list.length; i++) {
+    delete_products_list[i].remove();
+  }
     
-    document.getElementById('dadta_code').innerHTML = codes.length;
-    
-
+    document.getElementById('print_codes_list').innerHTML = "0"
 
 }
 
 
 
-eel.expose(update_dom_insertDB);
-function update_dom_insertDB() {
 
-    $('.print_codes_tara').css('background-color', 'green');
-}
-
-
-eel.expose(codes_d_DB);
-function codes_d_DB() {
-
-    $('.print_codes_tara').css('background-color', 'red');
-}
-
-// Функция запускаеться из python
-
-eel.expose(js_fun);
-function js_fun(path, name_file) {
-
-    console.log(path);
-    console.log(name_file);
-
-
-    $('#down_code_input').val(name_file);
-    $('#down_code_tara').html('Загрузить');
-
-    path_tara = path;
-}
-
-
-
-
-// Печатать коды на ящики
-
-
-
-
-$(document).ready(function(){
-  $("#down_code_tara").click(function(obj){
-      if(gtin.length > 3){
-         eel.search_file(gtin);
-         console.log(gtin);
-         }else{
-             console.log('Не выбран GTIN')
-             $('#down_code_input').val('Не выбран GTIN');
-         }
-     
-     //$('#down_code_tara').remove();
-});
-});
 
 $(document).ready(function(){
   $("#print_code_tara").click(function(){
       
-      if(path_tara != null){
-         console.log(path_tara);
-            console.log(gtin);
-          eel.print_code_tara(path_tara, gtin);
-         }else {
-             console.log('ERRORO')
-         }
+      
+          eel.print_code_tara(codes_list[0]);
+         
       // $('#next_three_screen').prop( "disabled", false );
 });
 });

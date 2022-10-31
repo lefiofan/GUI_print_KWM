@@ -22,6 +22,12 @@ body {
     height: 140px;
 }
 
+
+.tara_img-img {
+    width: 200px;
+    height: 200px;
+}
+
 .card-tara {
     margin-bottom: 20px;
 }
@@ -29,7 +35,7 @@ body {
     height: 482px;
 }
 .card-prod-name {
-    height: 750px;
+    height: 425px;
 }
 
 .name_prod {

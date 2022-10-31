@@ -64,8 +64,8 @@
                 </div>
                 <div class="col-sm-7 ">
 
-                    <div class="row" style="margin-top: 145px;">
-                        <div class="col-sm-6">
+                    <div class="row" style="margin-top: 45px;">
+                        <div class="col-sm-6 div_tara">
                             <div class="card ">
                                 <div class="card-body card-tara" >
                                     <h5 class="card-title tara">Обьем тары</h5>
@@ -78,9 +78,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title tara">Наименование продукции</h5>
 
-                                    <div class="list-group" id="list-group2">
-
-                                    </div>
+                                    <div class="list-group" id="list-group2"></div>
 
                                 </div>
                             </div>
@@ -98,15 +96,16 @@
  
 
          <div class="col-md-5" style="margin-right: 10px;">
-    <input  type="text" class="form-control" value="" placeholder="Загрузить коды бутылок" id="down_code_input" disabled>
+    <div><span id="print_codes_list">0</span>  Доступно для печати</div>
                             </div>
 
                             
   
-    <button class="btn_update_file btn btn-secondary" type="button" id="down_code_tara">Обновить</button>
-    <button class="btn btn-warning  " type="button" id="print_code_tara" style="margin-right: 12px;">Печатать</button>
-    <button class="test_print btn btn-info  " type="button" id="test_print">Пробная Печатать</button>
-
+    
+    <button class="btn btn-warning" type="button" id="print_code_tara" style="margin-right: 12px;">Печатать</button>
+    <button class="test_print btn btn-info" type="button" id="test_print">Пробная Печатать</button>
+    
+     <button class="btn_update_file btn btn-secondary" type="button" id="down_code_tara">Колибровка печати</button>
                          
                             
                             
@@ -122,8 +121,8 @@
 
 
 
-                            <!--                        disabled="disabled"-->
-                            <button type="button" id="btn_print_codes" class="btn btn-primary next_three_screen col-5  float-end" onclick="next_screen()">Далее</button>
+                            
+                            <button type="button" id="btn_print_codes" class="btn btn-primary reset_page col-5  float-end" onClick="next_screen()">Сброс</button>
 
 
 
@@ -141,7 +140,5 @@
     </div>
 
         </div>
-   
-   
-    <a href="page2.html">Page 2</a>
+
 {% endblock %}
