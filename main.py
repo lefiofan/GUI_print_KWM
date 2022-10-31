@@ -24,7 +24,6 @@ eel.init('web')                     # Give folder containing web files
 def one_start():
     pyautogui.press('f11')
 
-
 @logger.catch
 @eel.expose
 def tara_elem(strana: str):
@@ -49,33 +48,25 @@ def tara_elem(strana: str):
 def product_list(obiem: str, country: str):
     try:
         products = requests.get(f'http://127.0.0.1:8081/products/tara/{obiem}?country={country}').json()
-
-        #response = requests.request("GET", config["API"]["url"], headers={'cache-control': "no-cache"}, params={f"country": {strana}, f"tara": {obiem}}).json()
-
         return products
     except:
-        print('error')
         return 'error'
-
 
 @eel.expose
-def codes_list(product_name: str, product_volume: str, country: str):
+def codes_list(product_gtin: str):
     try:
 
-        codes = requests.get(f'http://127.0.0.1:8081/code/codes/{product_volume}?name_product={product_name}&country={country}').json()
+        return requests.get(f'http://127.0.0.1:8081/code/codes/{product_gtin}').json()
 
-        return codes
     except:
-        print('error')
         return 'error'
-
 
 @eel.expose
 def print_gtin(code, s):
     try:
         zpl = f"""
         ^XA
-        ^FO70,40^BY3
+        ^FO60,40^BY3
         ^BXN,6,200,,,,,1
         ^FD{code}
         ^FS
@@ -86,7 +77,15 @@ def print_gtin(code, s):
 
     except Exception as e:
         print(e)
+@eel.expose
+def test_print(codes: list):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((TCP_IP, TCP_PORT))
 
+    for cod in codes:
+        # Отправка на печатать
+        print_gtin(str(cod), s)
+    s.close()
 @eel.expose
 def print_code_tara(codes_list: list):
     logger.info(codes_list)

@@ -23,9 +23,10 @@ body {
 }
 
 
-.tara_img-img {
-    width: 200px;
-    height: 200px;
+.country_codes{
+    font-size: 80px;
+    color: green;
+    font-weight: bold;
 }
 
 .card-tara {
@@ -38,10 +39,23 @@ body {
     height: 425px;
 }
 
-.name_prod {
-    height: 73px;
+
+.list-group:after {
+  clear: both;
+  display: block;
+  content: ""; 
+    
 }
 
+
+.name_prod {
+    height: 60px;
+    float: left;
+}
+
+.list-group-item-action {
+    width: 50%;
+}
 .tara_btn {
     width: 144px;
     height: 110px;
@@ -92,6 +106,9 @@ body {
 }
 .down_code {
     margin-top: 20px;
+    position: absolute;
+    bottom: 7px;
+    width: 876px;
 }
 
 

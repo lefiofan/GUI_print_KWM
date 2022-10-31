@@ -14,7 +14,6 @@ window.onload = function() {
 async function strana_tar(st) {
     strana =  st.value
     tara_elems = await eel.tara_elem(strana)();
-    console.log(strana)
     
     // Проверка на соединение с Админкой если нет вывод ошибки
     if (tara_elems != 'error') {
@@ -23,6 +22,7 @@ async function strana_tar(st) {
         for (const elem of tara_elems) {
             create_tara_in_dom(elem);
         }
+        document.getElementById('card-prod-name').style.display = 'none';
         $(".two_screen").show();
     
     } else {
@@ -66,14 +66,14 @@ function create_tara_in_dom(elem) {
 
 
 
-function create_taraName_in_dom(elem) {
+function create_taraName_in_dom(name_product, gtin_product) {
     let btn = document.createElement('button');
     btn.className = "list-group-item list-group-item-action name_prod";
     btn.type = "button";
-    btn.innerHTML = `<strong>${elem}</strong>`;
+    btn.innerHTML = `<strong>${name_product}</strong>`;
     btn.setAttribute("onclick", "tara_name(this)")
-    btn.setAttribute("value", `${elem}`)
-    btn.setAttribute("id", `${elem}`)
+    btn.setAttribute("value", `${gtin_product}`)
+    btn.setAttribute("id", `${name_product}`)
     document.body.append(btn);
     document.getElementById("list-group2").appendChild(btn);
 }
@@ -82,16 +82,28 @@ function create_taraName_in_dom(elem) {
 
 // Функция принимает страну и отправляет в python принимает список тар
 async function tara(obj) {
-    $(".div_taras").hide();
+    
     volume = obj.value;
     $("#img_name").attr("src", '');
     name_taraa = await eel.product_list(volume, strana)();
     
     $("#list-group2").empty();
     var eell = $("#list-group2").children().length
-    for (const name of name_taraa) {
-        create_taraName_in_dom(name['name']);
+    if (name_taraa['detail'] == null){
+        
+        for (const name of name_taraa) {
+            
+        create_taraName_in_dom(name['name'], name['gtin']);
     }
+    
+    
+        document.getElementById('div_tara').style.display = 'none';
+        document.getElementById('card-prod-name').style.display = 'block';
+        let menu = document.querySelector('#card-prod-name');
+        menu.className = "col-sm-12";
+        }
+    
+    
 }
 
 
@@ -102,22 +114,46 @@ async function tara(obj) {
 
 
 // Во время нажатий на кнопку принимает название продукции и отправляет в python функцию ответ принимает страну гтин картинку обьем тары и количество в ящике
+
+
 async function tara_name(name) {
     
-    name_product = name.value;
+    document.getElementById('print_codes_list').innerHTML = "0"
+    
+    delete codes_list;
+    name_product = name.id;
+    gtin_product = name.value;
 
-    codes_list = await eel.codes_list(name_product, volume, strana)();
+    
+//    console.log(name_product)
+//    console.log(volume)
+//    console.log(strana)
+//    console.log(gtin_product)
+    
+    codes_list = await eel.codes_list(gtin_product)();
     src_product = codes_list[1];
     src_product = "http://127.0.0.1:8081/products/files/" + src_product;
-    for (const name of codes_list[0]) {
-        console.log(name);
-
-    }
+    
+    
+    
+    
+    console.log(src_product)
+    
     $("#img_name").attr("src", src_product);
     
     
-    document.getElementById('print_codes_list').innerHTML = codes_list.length
+    
+    if (codes_list[0] == []) {
+        
+        document.getElementById('print_codes_list').innerHTML = '0'
+        }else {
+            document.getElementById('print_codes_list').innerHTML = codes_list[0].length
+        }
+    
 }
+
+
+
 
 
 
@@ -149,6 +185,10 @@ function next_screen() {
   }
     
     document.getElementById('print_codes_list').innerHTML = "0"
+    
+    document.getElementById('div_tara').style.display = 'block';
+    let menu = document.querySelector('#card-prod-name');
+    menu.className = "col-sm-12";
 
 }
 
