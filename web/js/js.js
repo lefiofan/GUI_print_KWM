@@ -56,7 +56,7 @@ function create_tara_in_dom(elem) {
     let btn = document.createElement('button');
     btn.className = "btn btn-info tara_btn";
     btn.type = "button";
-    btn.innerHTML = `<strong>${elem}</strong>`;
+    btn.innerHTML = `<strong class="tara_btn_name">${elem}</strong>`;
     btn.setAttribute("onclick", "tara(this)")
     btn.setAttribute("value", `${elem}`)
     document.body.append(btn);
@@ -73,7 +73,7 @@ function create_taraName_in_dom(name_product, gtin_product) {
     btn.innerHTML = `<strong>${name_product}</strong>`;
     btn.setAttribute("onclick", "tara_name(this)")
     btn.setAttribute("value", `${gtin_product}`)
-    btn.setAttribute("id", `${name_product}`)
+    btn.setAttribute("id", `${gtin_product}`)
     document.body.append(btn);
     document.getElementById("list-group2").appendChild(btn);
 }
@@ -149,6 +149,9 @@ async function tara_name(name) {
         }else {
             document.getElementById('print_codes_list').innerHTML = codes_list[0].length
         }
+    
+     
+    
     
 }
 

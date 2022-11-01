@@ -41,7 +41,6 @@ def tara_elem(strana: str):
         return u_taras
 
     except:
-        print('error')
         return 'error'
 
 @eel.expose
@@ -66,7 +65,7 @@ def print_gtin(code, s):
     try:
         zpl = f"""
         ^XA
-        ^FO60,40^BY3
+        ^FO30,25^BY3
         ^BXN,6,200,,,,,1
         ^FD{code}
         ^FS
